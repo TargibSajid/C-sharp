@@ -341,12 +341,42 @@ namespace Lab3
 
                 else if (slt == 10)
                 {
-                    Console.Write("enter the total Size of the array : ");
+                    Console.Write("Enter the total size of the array: ");
 
                     int size = Convert.ToInt32(Console.ReadLine());
 
-
                     int[] arr = new int[size];
+
+                    Console.WriteLine("Enter the elements of the array:");
+                    
+                    for (int i = 0; i < size; i++)
+
+                    {
+                        arr[i] = Convert.ToInt32(Console.ReadLine());
+                    }
+
+                    Console.WriteLine("Prime elements in the array:");
+                    
+                    for (int i = 0; i < size; i++)
+                    {
+                        if (arr[i] > 1)
+                        {
+                            bool isPrime = true;
+                            
+                            for (int j = 2; j * j <= arr[i]; j++)
+                            {
+                                if (arr[i] % j == 0)
+                                {
+                                    isPrime = false;
+                                    break;
+                                }
+                            }
+                            if (isPrime)
+                            {
+                                Console.Write(arr[i] + " ");
+                            }
+                        }
+                    }
                 }
             }
 
