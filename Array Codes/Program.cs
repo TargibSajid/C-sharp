@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.VisualBasic.FileIO;
+using System;
 
 namespace Lab3
 {
@@ -6,6 +7,7 @@ namespace Lab3
     {
         static void Main(string[] args)
         {
+
             Console.WriteLine("\n======================\n");
             Console.WriteLine("1.Count a total number of duplicate elements in an Array.\n");
             Console.WriteLine("2.Print all unique elements in an Array.\n");
@@ -20,6 +22,10 @@ namespace Lab3
 
             Console.WriteLine("\n======================\n");
 
+
+    
+
+             
 
 
 
@@ -303,20 +309,65 @@ namespace Lab3
                 {
                     Console.Write("enter the total Size of the array : ");
 
-                    int size = Convert.ToInt32(Console.ReadLine());
+                    
 
 
-                    int[] arr = new int[size];
+                    int[] arr = new int[10] {1,2,3,4,0,0,0,0,0,0};
+
+
+                    Console.Write("Which index you want to insert the value : ");
+
+                    int index = Convert.ToInt32(Console.ReadLine());
+
+                    for( int i = index ; i < 9; i++)
+                    {
+                        arr[i+1] = arr[i];
+                    }
+
+                    arr[index] = Convert.ToInt32(Console.ReadLine());
+
+
+
+                    foreach(int i in arr)
+                    {
+                        Console.WriteLine(i);
+                    }
+
+
+
+
+                                    
                 }
 
                 else if (slt == 7)
                 {
-                    Console.Write("enter the total Size of the array : ");
+                    int[] array = { 1, 2, 3, 4, 5 };
+                    
+                    int indexToDelete = 2; 
 
-                    int size = Convert.ToInt32(Console.ReadLine());
+                    if (indexToDelete < 0 || indexToDelete >= array.Length)
+                    {
+                        throw new ArgumentOutOfRangeException("Index is out of range");
+                    }
+
+                    int[] newArray = new int[array.Length - 1];
+
+                    for (int i = 0, j = 0; i < array.Length; i++)
+                    {
+                        if (i == indexToDelete) continue;
+                        newArray[j++] = array[i];
+                    }
+
+                    array = newArray;
+
+                    Console.WriteLine("Array after deletion:");
+
+                    foreach (int item in array)
+                    {
+                        Console.Write(item + " ");
+                    }
 
 
-                    int[] arr = new int[size];
 
                 }
                 else if (slt == 8)
@@ -327,16 +378,64 @@ namespace Lab3
 
 
                     int[] arr = new int[size];
+
+
+                    for (int i = 0; i < size; i++)
+                    {
+                        arr[i] = Convert.ToInt32(Console.ReadLine());
+                    }
+
+                    int v = 0;
+
+                    for (int i = 1; i < size; i++)
+                    {
+                        v = arr[i];
+
+                        for (int j = i - 1; j >= 0; j--)
+                        {
+                            if (arr[j] > v)
+                            {
+                                int k;
+                                k = arr[j + 1];
+                                arr[j + 1] = arr[j];
+                                arr[j] = k;
+                            }
+
+                            else
+                            {
+                                break;
+                            }
+                        }
+
+                    }
+
+
+                    Console.WriteLine("The Second Maximum value in array is {0}  and Second Minimum value in array is {1}", arr[size -2], arr[1]);
                 }
 
                 else if (slt == 9)
                 {
-                    Console.Write("enter the total Size of the array : ");
+                    int[] array = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
 
-                    int size = Convert.ToInt32(Console.ReadLine());
+                    Console.WriteLine("Even elements in the array:");
 
+                    for (int i = 0; i < array.Length; i++)
+                    {
+                        if (array[i] % 2 == 0)
+                        {
+                            Console.Write(array[i] + " ");
+                        }
+                    }
 
-                    int[] arr = new int[size];
+                    Console.WriteLine("\nOdd elements in the array:");
+                    
+                    for (int i = 0; i < array.Length; i++)
+                    {
+                        if (array[i] % 2 != 0)
+                        {
+                            Console.Write(array[i] + " ");
+                        }
+                    }
                 }
 
                 else if (slt == 10)
